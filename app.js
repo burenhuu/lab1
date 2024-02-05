@@ -29,6 +29,20 @@ app.get("/", (req, res) => {
   res.send(data);
 });
 
+app.get("/login", (req, res) => {
+  console.log(req.query);
+  let is_logged_in = false;
+  let is_auth = false;
+  if ("ADMIN" === req.query.username && "ADMIN123" === req.query.password) {
+    is_logged_in = true;
+    is_auth = true;
+  } else {
+    is_auth = false;
+    is_logged_in = true;
+  }
+  res.render("login", { is_logged: is_logged_in, is_auth: is_auth });
+});
+
 app.get("/:id", (req, res) => {
   console.log(req.params);
   console.log(req.query);
